@@ -42,9 +42,13 @@ class BookController extends Controller
     }
     
     public function create(Request $request) {
-    	$title = $request->input('name');
-        $society = $request->input('society');
-                
+    	$title = $request->input('book_name');
+        $society_id = $request->input('society');
+        $book = \BookWrapper::insertBookToSociety($society_id, $title);
+        
+        $user_id = Auth::id();
+        \BookWrapper::insertBookToUser($user_id, $book->id);
+      
       
     	return redirect()->action('SocietyController@listUserSocieties');	
 	}

@@ -10,6 +10,7 @@
 			$book = new Book();
             $book->book_name = $book_name;
 			$book->society_id = $society_id;
+			$book->save();
             return $book;
 		}
 		
