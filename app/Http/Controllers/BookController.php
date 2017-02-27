@@ -27,4 +27,25 @@ class BookController extends Controller
         }
     	return view('listAllBooks', ['books' => $books]);
     }
+    
+    public function addBook(Request $request) {
+    	$societiess = \SocietyWrapper::getAllSocieties();
+    	$societies = array();
+    	
+    	foreach ($societiess as $society) {
+            $society_id = $society->id;
+            $society_name = $society->name;
+            $societya = array('society_id'=>($society_id), 'society_name'=>($society_name));
+            array_push($societies, $societya);
+        }
+    	return view('bookCreation', ['societies' => $societies]);
+    }
+    
+    public function create(Request $request) {
+    	$title = $request->input('name');
+        $society = $request->input('society');
+                
+      
+    	return redirect()->action('SocietyController@listUserSocieties');	
+	}
 }
