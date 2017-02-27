@@ -206,13 +206,8 @@
                         @foreach($books as $book)
                             <tr>
                                 <td>{{$book['book_name']}}</td>
-                                <td>{{$book['society_name']}}</td>
-                                
-                                
-<!-- Newly added feature that connect each book to discussion-->                       
-                                <td>
-                                    <form method="get" action="{{ url('/showDiscussions') }}">
-                                        <input type="hidden" name="society_id"  value="{{$society->id}}" />
+                                <td> <form method="get" action="{{ url('/showDiscussions') }}">
+                                        <input type="hidden" name="society_id"  value="{{$book['society_id']}}" />
                                         <button type="submit" style=" display: flex;
   overflow: hidden;
   width:100px;
@@ -235,12 +230,8 @@
   appearance:         none;
   justify-content: center;
   align-items: center;
-  flex: 0 0 160px;">Discussions</button>
-                                    </form>
-                                </td>
-<!-- ......... -->                                  
-                                
-                                
+  flex: 0 0 160px;">{{$book['society_name']}}</button>
+                                    </form></td>                                
                             </tr>
                         @endforeach
 
