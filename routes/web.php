@@ -95,3 +95,4 @@ Route::post('postComment', 'CommentController@post');
  Route::get('listAllBooks', 'BookController@listAllBooks');
  
  Route::post('createBook', 'BookController@create');
+ Route::get('remove', 'BookController@remove');
