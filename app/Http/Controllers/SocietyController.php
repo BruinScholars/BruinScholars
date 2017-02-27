@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 require_once ('SocietyWrapper.php');
 require_once ('PostWrapper.php');
 require_once ('DiscussionWrapper.php');
+require_once ('BookWrapper.php');
 
 class SocietyController extends Controller
 {
@@ -95,7 +96,19 @@ class SocietyController extends Controller
             if ($item1['replied_at'] == $item2['replied_at']) return 0;
             return $item1['replied_at'] < $item2['replied_at'] ? 1 : -1;
         });
-        return view('welcome', ['societies' => $societies, 'posts' => $posts_with_society_info]);
+        
+        $book_ids = \BookWrapper::getBooksOfUser($user_id);
+        $bookss = \BookWrapper::getBooksFromIds($book_ids);
+        $books = array();
+        foreach ($bookss as $book) {
+            $society_id = $book->society_id;
+            $society_name =\SocietyWrapper::getSocietyName($society_id);
+            $booka = array('book_name'=>($book->book_name), 'society_name'=>($society_name), 'society_id'=>($society_id),
+            'book_id'=>($book->id));
+            array_push($books, $booka);
+        }
+        
+        return view('welcome', ['societies' => $societies, 'posts' => $posts_with_society_info, 'books' => $books]);
         //return response()->json($societies);
     }
 

@@ -86,3 +86,12 @@ Route::any('showPost', 'PostController@show');
 
 Route::post('postComment', 'CommentController@post');
 
+/**
+ * The following routes are for adding and searching books.   // TODO
+ */
+
+ Route::get('addBook', function () {
+   return view('bookCreation');
+ });
+
+ Route::get('listAllBooks', 'BookController@listAllBooks');

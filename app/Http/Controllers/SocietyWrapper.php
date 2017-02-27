@@ -155,7 +155,7 @@
 
         // TODO: deprecate this method
         // Fix this method
-        static private function getSocietyName($society_id) {
+        static public function getSocietyName($society_id) {
             $society = DB::table('societies')->where('id', $society_id)->first();
             $name = $society->name;
             //foreach ($societies as $society) {
