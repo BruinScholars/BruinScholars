@@ -231,7 +231,40 @@
   justify-content: center;
   align-items: center;
   flex: 0 0 160px;">{{$book['society_name']}}</button>
-                                    </form></td>                                
+                                    </form></td>   
+                                    
+                                    
+                               <!-- add remove button-->
+                               <td>
+                                    <form method="get" action="{{ url('/quit') }}">
+                                        <input type="hidden" name="society_id"  value="{{$society->id}}" />
+                                        <button type="submit" style=" display: flex;
+  overflow: hidden;
+  width:50px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 60ms ease-in-out;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+  text-transform: capitalize;
+  color: #fff;
+  border: 0 none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;">Remove</button>
+                                    </form>
+                                </td>
+                               
+                               <!-- .................-->
                             </tr>
                         @endforeach
 
