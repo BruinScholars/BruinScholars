@@ -28,6 +28,22 @@ class BookController extends Controller
     	return view('listAllBooks', ['books' => $books]);
     }
     
+    public function listBookOwner(Request $request) {
+        // Current user would be the one making comments
+        $book_id = $request->input('book_id');
+        $users = \BookWrapper::getOwnersOfABook($book_id);
+        $userss = array();
+        foreach ($userss as $u) {
+            $user_name = $u->name;
+            $user_email = $u->email;
+            $user_year = $u->university_year;
+            $us = array('user_name'=>($user_name), 'user_email'=>($user_email), 'user_year'=>($user_year));
+            array_push($us, $userss);
+        }
+    	return view('listAllUsersForBook', ['users' => $userss]);
+    }
+    
+    
     public function addBook(Request $request) {
     	$societiess = \SocietyWrapper::getAllSocieties();
     	$societies = array();
@@ -52,4 +68,14 @@ class BookController extends Controller
       
     	return redirect()->action('SocietyController@listUserSocieties');	
 	}
+	
+	public function remove(Request $request)
+    {
+        $user_id = Auth::id();
+        $book_id = $request->input('book_id');
+        \BookWrapper::removeBookFromUser($user_id, $book_id);
+        return redirect()->action(
+            'SocietyController@listUserSocieties'
+        );
+    }
 }

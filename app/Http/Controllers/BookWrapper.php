@@ -51,7 +51,7 @@
             return $name;
     	}
         
-        static public function getOwnerOfABook ($book_id)
+        static public function getOwnersOfABook ($book_id)
         {
         	$books_user = App\UserBook::where('book_id', $book_id)->get();
             return $books_user;
@@ -71,7 +71,8 @@
         }
 
 		static public function getAllBooks() {
-			$books = App\Book::all();
+			$books = DB::table('Book')->orderBy('book_name','asc')->get();
+			//$books = App\Book::all();
             return $books;
 		}
 		
