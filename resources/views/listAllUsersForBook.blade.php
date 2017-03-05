@@ -37,10 +37,15 @@
                         <table class="table">
                             <tr>
                                 <th> Owner's Name</th>
+                                <th> Owner's Email Address</th>
+                                <th> Owner's University Year</th>
                             </tr>
                             @foreach($users as $user)
                                 <tr>
                                     <td>{{$user['user_name']}}</td>
+                                    <td>{{$user['user_email']}}</td>
+                                    <td>{{$user['user_year']}}</td>
+
                                 </tr>
                             @endforeach                           
                         </table>
