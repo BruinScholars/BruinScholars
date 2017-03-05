@@ -2,6 +2,7 @@
 
     use App\Book;
 	use App\UserBook;
+	use App\User;
 	
     class BookWrapper {
 		
@@ -69,9 +70,22 @@
             }
             return $books;
         }
+        
+        static public function getUsersFromIds($user_ids) {
+            $users = array();
+            foreach ($user_ids as $user_id) {
+                //$id = $society_id->society_id;
+                //$name = self::getSocietyName($id);
+                //$societies[$id] = $name;
+                //throw new ErrorException($name);
+                $user = DB::table('users')->where('id', $user_id->user_id)->first();
+                array_push($users, $user);
+            }
+            return $users;
+        }
 
 		static public function getAllBooks() {
-			$books = DB::table('Book')->orderBy('book_name','asc')->get();
+			$books = DB::table('Book')->orderBy('society_id','asc')->orderBy('book_name','asc')->get();
 			//$books = App\Book::all();
             return $books;
 		}

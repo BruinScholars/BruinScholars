@@ -31,14 +31,15 @@ class BookController extends Controller
     public function listBookOwner(Request $request) {
         // Current user would be the one making comments
         $book_id = $request->input('book_id');
-        $users = \BookWrapper::getOwnersOfABook($book_id);
+        $users_ids = \BookWrapper::getOwnersOfABook($book_id);
+        $users = \BookWrapper::getUsersFromIds($users_ids);
         $userss = array();
-        foreach ($userss as $u) {
+        foreach ($users as $u) {
             $user_name = $u->name;
             $user_email = $u->email;
             $user_year = $u->university_year;
             $us = array('user_name'=>($user_name), 'user_email'=>($user_email), 'user_year'=>($user_year));
-            array_push($us, $userss);
+            array_push($userss, $us);
         }
     	return view('listAllUsersForBook', ['users' => $userss]);
     }
