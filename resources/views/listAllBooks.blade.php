@@ -28,14 +28,61 @@
                         <table class="table">
                             <tr>
                                 <th>Book Title</th>
-                                <th>Society</th>
-                                <th></th>
-                                <th></th>
+                                <th> Society</th>
                             </tr>
                             @foreach($books as $book)
                                 <tr>
-                                    <td>{{$book['book_name']}}</td>
-                                    <td>{{$book['society_name']}}</td>
+                                    <td><form method="get" action="{{ url('/bookOwner') }}">
+                                        <input type="hidden" name="book_id"  value="{{$book['book_id']}}" />
+                                        <button type="submit" style=" display: flex;
+  overflow: hidden;
+  width:100px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 60ms ease-in-out;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+  text-transform: capitalize;
+  color: #fff;
+  border: 0 none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;">{{$book['book_name']}}</td>
+                                    <td> <form method="get" action="{{ url('/showDiscussions') }}">
+                                        <input type="hidden" name="society_id"  value="{{$book['society_id']}}" />
+                                        <button type="submit" style=" display: flex;
+  overflow: hidden;
+  width:100px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 60ms ease-in-out;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+  text-transform: capitalize;
+  color: #fff;
+  border: 0 none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;">{{$book['society_name']}}</button>
+                                    </form></td>
                                 </tr>
                             @endforeach                           
                         </table>
