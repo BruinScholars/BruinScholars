@@ -5,7 +5,37 @@
 
 <div class="container">
     <div class="row">
+    	
         <div class="col-md-9 col-md-offset-1">
+        <form method="get" action="{{ url('/listUsers') }}">
+                                        <button type="submit" style=" display: flex;
+  overflow: hidden;
+  width:110px;
+
+  cursor: pointer;
+  user-select: none;
+  transition: all 60ms ease-in-out;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+  text-transform: capitalize;
+
+  color: #fff;
+  border: 0 none;
+  border-radius: 4px;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;">Show All Users</button>
             <div class="panel panel-success">
                 <div class="panel-heading" style="background-color: #F5F5DC; ">Societies You are in!</div>
                     @if(Auth::check())
@@ -205,7 +235,31 @@
 
                         @foreach($books as $book)
                             <tr>
-                                <td>{{$book['book_name']}}</td>
+                                <td><form method="get" action="{{ url('/bookOwner') }}">
+                                        <input type="hidden" name="book_id"  value="{{$book['book_id']}}" />
+                                        <button type="submit" style=" display: flex;
+  overflow: hidden;
+  width:150px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 60ms ease-in-out;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-transform: none;
+  text-transform: capitalize;
+  color: #fff;
+  border: 0 none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 160px;">{{$book['book_name']}}</td>
                                 <td> <form method="get" action="{{ url('/showDiscussions') }}">
                                         <input type="hidden" name="society_id"  value="{{$book['society_id']}}" />
                                         <button type="submit" style=" display: flex;
@@ -236,11 +290,11 @@
                                     
                                <!-- add remove button-->
                                <td>
-                                    <form method="get" action="{{ url('/quit') }}">
-                                        <input type="hidden" name="society_id"  value="{{$society->id}}" />
+                                    <form method="get" action="{{ url('/remove') }}">
+                                        <input type="hidden" name="book_id"  value="{{$book['book_id']}}" />
                                         <button type="submit" style=" display: flex;
   overflow: hidden;
-  width:50px;
+  width:65px;
   cursor: pointer;
   user-select: none;
   transition: all 60ms ease-in-out;

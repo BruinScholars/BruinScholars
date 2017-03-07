@@ -270,7 +270,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-success">
-                    <div class="panel-heading" style="background-color: #F5F5DC;">Owner(s) of book</div>
+                    <div class="panel-heading" style="background-color: #F5F5DC;">List of Users</div>
 
                 @if(Auth::check())
                         <ul style=" list-style-type: none;
@@ -301,9 +301,9 @@
                     <!-- Table -->
                         <table class="table">
                             <tr>
-                                <th> Owner's Name</th>
-                                <th> Owner's Email Address</th>
-                                <th> Owner's University Year</th>
+                                <th> User's Name</th>
+                                <th> User's Email Address</th>
+                                <th> User's University Year</th>
                             </tr>
                             @foreach($users as $user)
                                 <tr>
