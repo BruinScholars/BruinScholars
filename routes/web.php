@@ -96,5 +96,9 @@ Route::post('postComment', 'CommentController@post');
  
  Route::post('createBook', 'BookController@create');
  Route::get('remove', 'BookController@remove');
- 
+  Route::get('remov', 'BookController@remov');
+
+  Route::get('add', 'BookController@add');
+
  Route::get('bookOwner', 'BookController@listBookOwner');
+  Route::get('listUsers', 'BookController@listUsers');
