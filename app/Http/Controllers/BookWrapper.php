@@ -44,6 +44,41 @@
             return $user_books;
         }
     
+    	static public function getBooksUserDontHave ($user_id)
+        {
+            $all = self::getAllBooks();
+            $books_owned = self::getBooksOfUser($user_id);
+            $book_ids_owned = array();
+            foreach ($books_owned as $book)
+            {
+                array_push($book_ids_owned, $book->book_id);
+            }
+            // get index of societies user not in
+            $index = array();
+            $initial = 0;
+            foreach ($all as $book)
+            {
+                if(in_array($book->id, $book_ids_owned))
+                {
+                    //unset($society, $all);
+                    array_push($index, $initial);
+                }
+                $initial++;
+            }
+            //remove socities a user is in from $all
+            foreach ($index as $i)
+            {
+                unset($all[$i]);
+            }
+            // get a new array
+            $result = array();
+            foreach($all as $key => $value)
+            {
+                array_push($result, $value);
+            }
+            return $result;
+        }
+
     
     	static public function getBookTitleFromID ($book_id)
     	{
@@ -86,6 +121,12 @@
 
 		static public function getAllBooks() {
 			$books = DB::table('Book')->orderBy('society_id','asc')->orderBy('book_name','asc')->get();
+			//$books = App\Book::all();
+            return $books;
+		}
+		
+		static public function getAllUsers() {
+			$books = DB::table('users')->orderBy('name','asc')->get();
 			//$books = App\Book::all();
             return $books;
 		}
